@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      :root {
+        --x: 100px;
+        --y: 100px;
+        --z:100px;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-holder {
+        height: 100dvh;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .spotlight-effect {
+        position: fixed;
+        inset: 0%;
+        background: radial-gradient(
+          circle 150px at var(--x) var(--y),
+          transparent 0%,
+          rgba(0, 0, 0, 0.95) 100%
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-holder">
+      <img src="./images/spotlight-effect.avif" />
+    </div>
+    <div class="spotlight-effect"></div>
+
+    <script>
+      const body = document.querySelector("body");
+
+      body.addEventListener("mousemove", function (coordinates) {
+        document.documentElement.style.setProperty("--x", coordinates.clientX + "px");
+        document.documentElement.style.setProperty("--y", coordinates.clientY + "px");
+      });
+    </script>
+  </body>
+</html>
