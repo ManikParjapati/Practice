@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .full-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            color: white;
+        }
+
+        .text-holder {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full-container">
+        <div class="text-holder">
+            <p>Hello Welcome to matric animation</p>
+        </div>
+    </div>
+
+    <script>
+        const alphabates = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const targetpara = document.querySelector('p');
+        const originalText = targetpara.innerText;
+        let interaion = 0;
+        let interval;
+
+        function randomtext() {
+            const str = originalText.split('').map((char, index) => {
+                if (index < interaion) {
+                    return originalText[index];
+                }
+                return alphabates[Math.floor(Math.random() * alphabates.length)];
+            }).join('');
+
+            targetpara.innerText = str;
+
+            interaion += 0.2;
+
+            if (interaion >= originalText.length) {
+                clearInterval(interval);
+            }
+        }
+
+        targetpara.addEventListener('mouseenter', () => {
+            interaion = 0;
+            clearInterval(interval);
+            interval = setInterval(randomtext, 30);
+        });
+    </script>
+</body>
+
+</html>
